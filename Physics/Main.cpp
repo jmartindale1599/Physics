@@ -5,31 +5,27 @@
 
 #include <glm/glm.hpp>
 
+#include "Graphics.h"
+
+#include "Random.h"
+
+#include "ParticleTest.h"
+
+#include "ForceTest.h"
+
 int main(int argc, char* argv[]) {
 
-    SDL_Window* window = NULL;
-    
-    SDL_Surface* screenSurface = NULL;
+    Test* test = new ForceTest();
+     
+    test->Initialize();
 
-    glm::ivec2 screen{ 800, 600 };
+    while (!test->IsQuit()){
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0){
-        
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        
-        return 1;
-    
-        
-        SDL_WINDOW_SHOWN
-    
-    );
+        test->Run();
 
-    if (window == NULL){
-
-        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-
-    
     }
+
+    delete test;
 
     return 0;
 
