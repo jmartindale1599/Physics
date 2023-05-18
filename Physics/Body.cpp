@@ -14,8 +14,6 @@ void Body::Step(float dt){
 
 	ApplyForce(World::gravity * gravityScale * mass);
 
-	float damping = 2;
-
 	Integrator::SemiImplicitEuler(*this, dt);
 
 	ClearForce();
