@@ -43,7 +43,7 @@ Andreas Schiffler -- aschiffler at ferzkopp dot net
 #include <math.h>
 #include <string.h>
 
-#include "Primitives.h"
+#include "../Engine/Primitives.h"
 
 /* ---- Structures */
 

@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Graphics.h"
+#include "../Engine/Graphics.h"
 
-#include "Input.h"
+#include "../Engine/Input.h"
 
-#include "Time.h"
+#include "../Engine/Time.h"
 
-#include "Random.h"
+#include "../Engine/Random.h"
 
-#include "World.h"
+#include "../Physics/World.h"
 
 class Test{
 

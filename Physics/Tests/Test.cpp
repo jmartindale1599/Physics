@@ -1,4 +1,4 @@
-#include "Test.h"
+#include "../Tests/Test.h"
 
 Test::Test(){
 
@@ -44,11 +44,11 @@ void Test::Run(){
 	
 	m_fixedTime += m_time->TimeDelta();
 	
-	while (m_fixedTime >= m_time->TimeDelta()){
+	while (m_fixedTime >= m_time->GetFixedDeltaTime()){
 
 		FixedUpdate();
 		
-		m_fixedTime -= m_time->TimeDelta();
+		m_fixedTime -= m_time->GetFixedDeltaTime();
 		
 	}
 

@@ -1,6 +1,6 @@
 #include "ForceGenerator.h"
 
-#include "Body.h"
+#include "../Body.h"
 
 void ForceGenerator::Draw(Graphics* graphics){
 

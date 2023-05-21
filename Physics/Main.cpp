@@ -5,17 +5,19 @@
 
 #include <glm/glm.hpp>
 
-#include "Graphics.h"
+#include "../Physics/Engine/Graphics.h"
 
-#include "Random.h"
+#include "../Physics/Engine/Random.h"
 
-#include "ParticleTest.h"
+#include "../Physics/Tests/ParticleTest.h"
 
-#include "ForceTest.h"
+#include "../Physics/Tests/ForceTest.h"
+
+#include "../Physics/Tests/JointTest.h"
 
 int main(int argc, char* argv[]) {
 
-    Test* test = new ForceTest();
+    Test* test = new JointTest();
      
     test->Initialize();
 

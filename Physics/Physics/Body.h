@@ -2,7 +2,7 @@
 
 #include <glm/glm.hpp>
 
-#include "Shape.h"
+#include "../Physics/Shapes/Shape.h"
 
 class Body {
 
@@ -24,6 +24,8 @@ public:
 
 	void ClearForce() { force = glm::vec2{ 0,0 }; }
 
+	bool Intersects(class Body* body);
+
 public:
 
 	class Shape* shape{ nullptr };
@@ -37,6 +39,8 @@ public:
 	glm::vec2 force{ 0,0 };
 
 	float gravityScale{ 1 };
+
+	float damping{ 1 };
 
 	float mass{ 1 };
 

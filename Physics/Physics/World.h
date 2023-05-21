@@ -22,6 +22,10 @@ public:
 	
 	void RemoveBodyObject(Body* body);
 
+	void AddJoint(class Joint* joint);
+
+	void RemoveJoint(class Joint* joint);
+
 	void AddForceGenerator(class ForceGenerator* forceGen);
 
 	static glm::vec2 gravity;
@@ -29,6 +33,8 @@ public:
 private:
 
 	std::list<Body*> m_bodys;
+
+	std::list<class Joint*> m_joints;
 
 	std::vector<class ForceGenerator*> m_forceGenerators;
 

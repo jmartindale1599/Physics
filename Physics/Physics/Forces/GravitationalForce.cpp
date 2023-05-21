@@ -1,6 +1,6 @@
 #include "GravitationalForce.h"
 
-#include "Body.h"
+#include "../Body.h"
 
 void GravitationalForce::Apply(std::vector<class Body*> bodies){
 

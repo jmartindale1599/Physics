@@ -1,6 +1,6 @@
-#include "Graphics.h"
+#include "../Engine/Graphics.h"
 
-#include "Primitives.h"
+#include "../Engine/Primitives.h"
 
 #include <include/SDL.h>
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Test.h"
+#include "../Tests/Test.h"
 
 class ForceTest : public Test {
 

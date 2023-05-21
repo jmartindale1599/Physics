@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Test.h"
+#include "../Tests/Test.h"
 
-class ParticleTest : public Test{
+class JointTest : public Test {
 
 public:
 
@@ -14,6 +14,8 @@ public:
 
 	virtual void Render() override;
 
-protected:
-	
+private:
+
+	class Body* m_anchor{ nullptr };
+
 };
