@@ -30,8 +30,6 @@ void JointTest::Initialize(){
 
 	auto body = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::Dynamic);
 
-	body->gravityScale = 250;
-	
 	body->damping = BODY_DAMPING;
 	
 	m_world->AddBodyObject(body);
