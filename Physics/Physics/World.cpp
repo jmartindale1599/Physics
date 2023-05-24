@@ -20,8 +20,6 @@ void World::Step(float dt){
 
 	//apply force gens force
 
-	if (m_bodys.empty() == false && m_forceGenerators.empty() == false){
-
 		std::vector<Body*> bodies(m_bodys.begin(), m_bodys.end());
 
 		for (auto forceGenerator : m_forceGenerators) {
@@ -31,10 +29,6 @@ void World::Step(float dt){
 		}
 
 	}
-
-	//apply joints
-
-	for (auto joints : m_joints) joints->Step(dt);
 
 	//bodys
 
