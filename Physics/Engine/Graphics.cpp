@@ -18,7 +18,15 @@ Graphics::~Graphics(){
 
 }
 
-void Graphics::CreateWindow(int x, int y, const char* title){
+void Graphics::CreateWindow(int width, int height, const char* title, float size){
+
+    m_width = width;
+
+    m_height = height;
+
+    float ratio = m_width / (float)m_height;
+
+    m_extents = glm::vec2{ size * ratio, size };
 
     m_window = SDL_CreateWindow(
 
@@ -28,9 +36,9 @@ void Graphics::CreateWindow(int x, int y, const char* title){
 
         SDL_WINDOWPOS_UNDEFINED,
 
-        x,
+        m_height,
 
-        y,
+        m_width,
 
         SDL_WINDOW_SHOWN
 
@@ -103,6 +111,46 @@ void Graphics::DrawFilledCircle(const glm::ivec2& point, int radius, const glm::
     filledCircleRGBA(m_renderer, point.x, point.y, radius, icolor.r, icolor.g, icolor.b, icolor.a);
 
 }
+
+glm::vec2 Graphics::ScreenToWorld(const glm::ivec2& screen){
+
+    float x = screen.x / (float)m_width; // screen x (0 - 800) -> x (0 - 1)
+    
+    float y = (m_height - screen.y) / (float)m_height; // screen y (0 - 600) -> (0 - 1) flip
+
+    glm::vec2 world;
+    
+    world.x = ((1 - x) * -m_extents.x) + (x * m_extents.x);
+    
+    world.y = ((1 - y) * -m_extents.y) + (y * m_extents.y);
+
+    return world;
+
+}
+
+glm::ivec2 Graphics::WorldToScreen(const glm::vec2& world){
+
+    float x = (world.x + m_extents.x) / (m_extents.x * 2); // world.x = 0 -> (0 + 6.66) / 13.33 -> 0.5
+    
+    float y = (world.y + m_extents.y) / (m_extents.y * 2); // world.y = 0 -> (0 + 5) / 10 = 0.5
+
+    glm::vec2 screen;
+    
+    screen.x = x * m_width;
+    
+    screen.y = (1.0f - y) * m_height;
+
+    return screen;
+
+}
+
+int Graphics::WorldToPixels(float world){
+
+    return (int)(world * (m_height / (m_extents.y * 2)));
+
+}
+
+
 
 glm::ivec4 Graphics::ConvertColor(const glm::vec4& color){
 

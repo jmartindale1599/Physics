@@ -22,7 +22,7 @@ void Test::Initialize(){
 
 	m_graphics = new Graphics();
 	
-	m_graphics->CreateWindow(800, 600, "Physics");
+	m_graphics->CreateWindow(800, 600, "Physics", 12);
 	
 	m_input = new Input();
 

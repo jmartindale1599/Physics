@@ -4,7 +4,13 @@
 
 #include "../Physics/Constraints/Joint.h"
 
-glm::vec2 World::gravity{ 0, 9.8f };
+#include "../../Physics/Collision/Contact.h"
+
+#include "../../Physics/Collision/Collision.h"
+
+#include <vector>
+
+glm::vec2 World::gravity{ 0, -9.8f };
 
 World::~World(){
 
@@ -18,9 +24,15 @@ World::~World(){
 
 void World::Step(float dt){
 
+	//apply joints
+
+	for (auto joints : m_joints) joints->Step(dt);
+
 	//apply force gens force
 
-		std::vector<Body*> bodies(m_bodys.begin(), m_bodys.end());
+	std::vector<Body*> bodies(m_bodys.begin(), m_bodys.end());
+
+	if (m_bodys.empty() == false && m_forceGenerators.empty() == false){
 
 		for (auto forceGenerator : m_forceGenerators) {
 
@@ -37,6 +49,16 @@ void World::Step(float dt){
 		body->Step(dt);
 
 	}
+
+	//collision
+
+	std::vector<Contact> contacts;
+
+	Collision::createContacts(bodies, contacts);
+
+	Collision::seperateContacts(contacts);
+
+	Collision::resolveContacts(contacts);
 
 }
 

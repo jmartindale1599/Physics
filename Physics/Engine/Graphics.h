@@ -10,7 +10,7 @@ public:
 
 	~Graphics();
 
-	void CreateWindow(int x, int y, const char* title);
+	void CreateWindow(int width, int height, const char* title, float size = 8);
 
 	void Clear();
 
@@ -26,9 +26,23 @@ public:
 
 	void DrawFilledCircle(const glm::ivec2& point, int radius, const glm::vec4& color);
 
+	glm::vec2 ScreenToWorld(const glm::ivec2& screen);
+
+	glm::ivec2 WorldToScreen(const glm::vec2& world);
+	
+	int WorldToPixels(float world);
+
+	const glm::vec2& GetWorldExtents() const { return m_extents; }
+
 	static glm::ivec4 ConvertColor(const glm::vec4& color);
 
 private:
+
+	int m_width{ 0 };
+
+	int m_height{ 0 };
+	
+	glm::vec2 m_extents{ 0 };
 
 	struct SDL_Window* m_window = nullptr;
 

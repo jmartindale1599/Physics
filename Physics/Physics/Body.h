@@ -12,7 +12,7 @@ public:
 
 	Body(Shape* shape, const glm::vec2& position, const glm::vec2& velocity = { 0, 0 }, float mass = 1, Type type = Type::Dynamic) : shape{ shape }, position { position }, velocity{ velocity }, mass{ mass }, type{ type } {
 	
-		invMass = (mass == 0) ? 0 : 1 / mass; 
+		invMass = (mass == 0 || type != Dynamic) ? 0 : 1 / mass; 
 	
 	};
 
@@ -43,6 +43,8 @@ public:
 	float damping{ 1 };
 
 	float mass{ 1 };
+
+	float restitution{ 1 };
 
 	float invMass{ 1 };
 

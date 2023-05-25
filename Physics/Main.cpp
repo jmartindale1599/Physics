@@ -15,9 +15,11 @@
 
 #include "../Physics/Tests/JointTest.h"
 
+#include "../Physics/Tests/CollisionTest.h"
+
 int main(int argc, char* argv[]) {
 
-    Test* test = new JointTest();
+    Test* test = new CollisionTest();
      
     test->Initialize();
 

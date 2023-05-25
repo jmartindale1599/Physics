@@ -8,9 +8,9 @@
 
 #include "../Physics/Constraints/Joint.h"
 
-#define SPRING_STIFFNESS 120
+#define SPRING_STIFFNESS 100
 
-#define SPRING_LENGTH 45
+#define SPRING_LENGTH 1
 
 #define BODY_DAMPING 10
 
@@ -20,7 +20,7 @@ void JointTest::Initialize(){
 
 	Test::Initialize();
 
-	m_anchor = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 100 }, { 0, 0 }, 0, Body::Kinematic);
+	m_anchor = new Body(new CircleShape(1, { 1, 1, 1, 1 }), { 0, 0 }, { 0, 0 }, 0, Body::Kinematic);
 	
 	m_world->AddBodyObject(m_anchor);
 
@@ -28,8 +28,8 @@ void JointTest::Initialize(){
 
 	//chain -> for
 
-	auto body = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::Dynamic);
-
+	auto body = new Body(new CircleShape(0.5f, { 1, 1, 1, 1 }), { 0, 0 });
+	
 	body->damping = BODY_DAMPING;
 	
 	m_world->AddBodyObject(body);
@@ -40,10 +40,8 @@ void JointTest::Initialize(){
 
 	prevBody = body;
 
-	body = new Body(new CircleShape(20, { 1, 1, 1, 1 }), { 400, 200 }, { 0, 0 }, 1, Body::Dynamic); 
+	body = new Body(new CircleShape(0.5f, { 1, 1, 1, 1 }), { 0, 0 }); 
 
-	body->gravityScale = 250; 
-	
 	body->damping = BODY_DAMPING; 
 
 	m_world->AddBodyObject(body); 
@@ -58,7 +56,7 @@ void JointTest::Update(){
 
 	Test::Update();
 	
-	m_anchor->position = m_input->GetMousePosition();
+	m_anchor->position = m_graphics->ScreenToWorld(m_input->GetMousePosition());
 
 }
 
