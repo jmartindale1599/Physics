@@ -29,9 +29,9 @@ void ForceTest::Initialize() {
 
 #if defined(POINT_FORCE)
 
-	auto body = new Body(new CircleShape(200, { 1, 1, 1, 0.2f }), { 400, 300 }, { 0, 0 }, 0, Body::Static);
+	auto body = new Body(new CircleShape(200, { 1, 1, 1, 1 }), { 400, 300 }, { 0, 0 }, 0, Body::Static);
 
-	ForceGenerator* forceGenerator = new PointForce(body, 2000);
+	ForceGenerator* forceGenerator = new PointForce(body, 20);
 
 	m_world->AddForceGenerator(forceGenerator);
 
@@ -61,11 +61,11 @@ void ForceTest::Update() {
 
 	if (m_input->GetMouseButton(0)) {
 
-		glm::vec2 velocity = { randomUnitCircle() * randomf(100, 200) };
+		glm::vec2 velocity = { randomUnitCircle() * randomf(.10f, .20f) };
 
-		float size = randomf(2, 9) * 3;
+		float size = randomf(0.2f, 0.9f);
 
-		auto body = new Body(new CircleShape(size, { random(0,255), random(0,255), random(0,255), random(0,255) }),m_input->GetMousePosition(), velocity, size);
+		auto body = new Body(new CircleShape(size, { randomf(), randomf(), randomf(), randomf() }), m_graphics->ScreenToWorld(m_input->GetMousePosition()), velocity, size);
 
 		body->gravityScale = 30;
 
@@ -85,7 +85,7 @@ void ForceTest::Render() {
 
 	m_world->Draw(m_graphics);
 
-	m_graphics->DrawCircle(m_input->GetMousePosition(), 30, { randomf(), randomf(), randomf(), 1 });
+	m_graphics->DrawCircle(m_input->GetMousePosition(), 40, { randomf(), randomf(), randomf(), 1 });
 
 }
 

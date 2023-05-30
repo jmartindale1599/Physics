@@ -16,9 +16,13 @@ void ParticleTest::Update(){
 
 	if (m_input->GetMouseButton(0)) {
 
-		glm::vec2 velocity = { randomUnitCircle() * randomf(100, 200) };
+		glm::vec2 position = m_graphics->ScreenToWorld(m_input->GetMousePosition());
 
-		auto body = new Body(new CircleShape(random(60), { random(0,255), random(0,255), random(0,255), random(0,255) }), (m_input->GetMousePosition(), velocity));
+		glm::vec2 velocity = { 0,0 };//randomUnitCircle() * randomf(1, 3);
+
+		float size = randomf(0.5f, 0.9f);
+
+		auto body = new Body(new CircleShape(size, { randomf(), randomf(), randomf(), 1 }), position, velocity, size);
 
 		m_world->AddBodyObject(body);
 
@@ -26,15 +30,15 @@ void ParticleTest::Update(){
 
 }
 
-void ParticleTest::FixedUpdate(){//changing this changed my particles placement highly. 
+void ParticleTest::FixedUpdate(){
 
-	m_world->Step(m_time->GetFixedDeltaTime()); 
+	m_world->Step(m_time->GetFixedDeltaTime());
 
 }
 
 void ParticleTest::Render(){ 
 
-	m_world->Draw(m_graphics); 
+	m_world->Draw(m_graphics);
 
 	m_graphics->DrawCircle(m_input->GetMousePosition(), 30, { randomf(), randomf(), randomf(), 1 }); 
 

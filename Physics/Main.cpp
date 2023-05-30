@@ -13,13 +13,13 @@
 
 #include "../Physics/Tests/ForceTest.h"
 
-#include "../Physics/Tests/JointTest.h"
+#include "../Physics/Tests/JointTest.h" //works
 
-#include "../Physics/Tests/CollisionTest.h"
+#include "../Physics/Tests/CollisionTest.h" //works
 
 int main(int argc, char* argv[]) {
 
-    Test* test = new CollisionTest();
+    Test* test = new ParticleTest();
      
     test->Initialize();
 
